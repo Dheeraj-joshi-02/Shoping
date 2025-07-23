@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
-import Context from "./Context";
-import { getInstance } from "./axios";
-const ContextProvide = ({ children }) => {
-  const [products, setProducts] = useState(null);
+  import React, { useEffect, useState } from "react";
+  import InstanceContext from "./Context";
+  import { getInstance } from "./axios";
+  const ContextProvide = ({ children }) => {
+    const [products, setProducts] = useState([]);
 
-  const getProducts = async () => {
-    try {
-      const response = await getInstance();
-      console.log(response.data.products);
-      setProducts(response);
-    } catch (error) {
-      console.log(`error: ${error}`);
-    }
+    const getProducts = async () => {
+      try {
+        const response = await getInstance();
+        let data = response.data
+        setProducts(data);
+        console.log(`data: ${data}`);
+      } catch (error) {
+        console.log(`error: ${error}`);
+      }
+    };
+
+    useEffect(() => {
+      getProducts();
+    }, []);
+
+    return (
+      <InstanceContext.Provider value={[products, setProducts]}>
+        {children}
+      </InstanceContext.Provider>
+    );
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  return (
-    <Context.Provider value={[products, setProducts]}>
-      {children}
-    </Context.Provider>
-  );
-};
-
-export default ContextProvide;
+  export default ContextProvide;
