@@ -2,11 +2,11 @@ import React from "react";
 import { X, Filter, Plus } from "lucide-react";
 
 const categories = [
-  { id: "cat1", name: "Electronics", color: "bg-blue-500" },
-  { id: "cat2", name: "Clothing", color: "bg-orange-500" },
-  { id: "cat3", name: "Home & Garden", color: "bg-green-500" },
-  { id: "cat4", name: "Books", color: "bg-purple-500" },
-  { id: "cat5", name: "Sports", color: "bg-red-500" },
+  { id: "1", name: "Electronics", color: "bg-blue-500" },
+  { id: "2", name: "Clothing", color: "bg-orange-500" },
+  { id: "3", name: "Home & Garden", color: "bg-green-500" },
+  { id: "4", name: "Books", color: "bg-purple-500" },
+  { id: "5", name: "Sports", color: "bg-red-500" },
 ];
 
 export function Sidebar({
@@ -30,7 +30,7 @@ export function Sidebar({
         className={`fixed top-0 left-0 z-50 h-full transform border-r border-gray-200 bg-white transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"} flex w-72 flex-col lg:static lg:z-0 lg:translate-x-0`}
       >
         {/* Header */}
-        <div className="h-16 border-b border-gray-200 py-4 pl-5">
+        <div className="h-14 px-5 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-lg font-semibold text-gray-900">
               Product Manager
@@ -46,14 +46,14 @@ export function Sidebar({
 
         {/* Add New Product Button */}
         <div className="border-b border-gray-200 p-4">
-          <button className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-black px-4 py-3 font-medium text-white transition-colors hover:bg-gray-800">
+          <button className="flex w-full cursor-pointer items-center justify-center gap-1 rounded-lg bg-black px-4 py-3 font-medium text-white transition-colors hover:bg-gray-800">
             <Plus className="h-4 w-4" />
             Add New Product
           </button>
         </div>
 
         {/* Category Filter */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-6 text-center">
           <div className="mb-6 flex items-center gap-2">
             <Filter className="h-4 w-4 text-gray-500" />
             <h2 className="font-medium text-gray-900">Category Filter</h2>

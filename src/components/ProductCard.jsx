@@ -21,9 +21,9 @@ export function ProductCard({ product }) {
           <h3 className="text-lg leading-tight font-semibold text-gray-900">
             {product.name}
           </h3>
-          <NavLink to={`/productdetails/${product.id}`} className="rounded-lg p-1 opacity-0 transition-colors group-hover:opacity-100 hover:bg-gray-100">
+          <div className="rounded-lg p-1 opacity-0 transition-colors group-hover:opacity-100 hover:bg-gray-100">
             <MoreHorizontal className="h-5 w-5 text-gray-400" />
-          </NavLink>
+          </div>
         </div>
 
         <p className="mb-4 line-clamp-2 text-sm text-gray-600">
@@ -31,7 +31,9 @@ export function ProductCard({ product }) {
         </p>
 
         <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold text-gray-900">${product.price}</span>
+          <span className="text-2xl font-bold text-gray-900">
+            ${product.price}
+          </span>
           <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
             {product.category}
           </span>
