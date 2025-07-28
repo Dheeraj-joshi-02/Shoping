@@ -1,20 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { X, Filter, Plus } from "lucide-react";
+import InstanceContext from "../../context/Context";
+import { NavLink } from "react-router-dom";
 
-const categories = [
-  { id: "1", name: "Electronics", color: "bg-blue-500" },
-  { id: "2", name: "Clothing", color: "bg-orange-500" },
-  { id: "3", name: "Home & Garden", color: "bg-green-500" },
-  { id: "4", name: "Books", color: "bg-purple-500" },
-  { id: "5", name: "Sports", color: "bg-red-500" },
-];
-
-export function Sidebar({
+export const Sidebar = ({
   isOpen,
   onClose,
   selectedCategory = "all",
   onCategoryChange = () => {},
-}) {
+}) => {
+  const [products] = useContext(InstanceContext);
+
+  // storing array categories in another array.
+  let distinctProducts =
+    products && products.reduce((acc, cv) => [...acc, cv.category], []);
+
+  distinctProducts = [...new Set(distinctProducts)];
+  const capitalizedCategories = distinctProducts.map(
+    (item) => item.charAt(0).toUpperCase() + item.slice(1),
+  );
+
+  const color = () => {
+    return `rgba(${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()})`;
+  };
   return (
     <>
       {/* Mobile overlay */}
@@ -89,20 +97,24 @@ export function Sidebar({
               <span>All Categories</span>
             </button>
 
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => onCategoryChange(category.id)}
+            {capitalizedCategories.map((category, id) => (
+              <NavLink
+                key={id}
+                to={`/category/${category}`}
+                onClick={() => onCategoryChange(category)}
                 className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none ${
-                  selectedCategory === category.id
+                  selectedCategory === category
                     ? "bg-blue-50 font-medium text-blue-700"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}
-                aria-pressed={selectedCategory === category.id}
+                aria-pressed={selectedCategory === category}
               >
-                <div className={`h-2 w-2 rounded-full ${category.color}`} />
-                <span>{category.name}</span>
-              </button>
+                <div
+                  style={{ backgroundColor: color() }}
+                  className={`h-2 w-2 rounded-full ${category}`}
+                />
+                <span>{category}</span>
+              </NavLink>
             ))}
           </nav>
         </div>
@@ -124,4 +136,6 @@ export function Sidebar({
       </aside>
     </>
   );
-}
+};
+
+("Have any error in this code?");
