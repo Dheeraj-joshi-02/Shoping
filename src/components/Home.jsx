@@ -30,7 +30,7 @@ function Home() {
       : products.filter((product) => product.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="m-auto min-h-screen max-w-7xl border border-gray-200 bg-gray-50">
       <div className="flex h-screen overflow-hidden">
         {/* Sidebar */}
         <Sidebar
@@ -49,7 +49,7 @@ function Home() {
               {/* Page Header */}
               <div className="mb-8">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
+                  <div className="text-center lg:text-left">
                     <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
                       Product Catalog
                     </h1>
@@ -59,7 +59,7 @@ function Home() {
                   </div>
 
                   {/* Product Count */}
-                  <div className="flex items-center gap-2">
+                  <div className="gap-2 text-center lg:text-left">
                     <span className="text-sm text-gray-500">
                       {filteredProducts.length} of {products.length} products
                     </span>
@@ -96,17 +96,10 @@ function Home() {
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-                  {/* {filteredProducts.map((product) => (
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+                  {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
-                  ))} */}
-                  <InstanceContext.Consumer>
-                    {([Products]) =>
-                      Products.map((item, index) => (
-                        <ProductCard key={index} product={item} />
-                      ))
-                    }
-                  </InstanceContext.Consumer>
+                  ))}
                 </div>
               )}
             </div>

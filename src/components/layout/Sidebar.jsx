@@ -49,7 +49,7 @@ export const Sidebar = ({
         aria-label="Product management sidebar"
       >
         {/* Header */}
-        <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6 shadow-sm">
+        <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6">
           <h1 className="text-lg font-semibold text-gray-900">
             Product Manager
           </h1>
