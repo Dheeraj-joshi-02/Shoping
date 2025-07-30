@@ -14,11 +14,7 @@ export const Sidebar = ({
   // storing array categories in another array.
   let distinctProducts =
     products && products.reduce((acc, cv) => [...acc, cv.category], []);
-
   distinctProducts = [...new Set(distinctProducts)];
-  const capitalizedCategories = distinctProducts.map(
-    (item) => item.charAt(0).toUpperCase() + item.slice(1),
-  );
 
   const color = () => {
     return `rgba(${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()})`;
@@ -96,8 +92,7 @@ export const Sidebar = ({
               <div className="h-2 w-2 rounded-full bg-gray-400" />
               <span>All Categories</span>
             </button>
-
-            {capitalizedCategories.map((category, id) => (
+            {distinctProducts.map((category, id) => (
               <NavLink
                 key={id}
                 to={`/category/${category}`}

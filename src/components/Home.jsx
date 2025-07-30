@@ -4,11 +4,15 @@ import { Sidebar } from "./layout/Sidebar";
 import { ProductCard } from "./product/ProductCard";
 import InstanceContext from "../context/Context";
 import Loading from "./common/Loading";
+import { useLocation } from "react-router-dom";
 
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [products] = useContext(InstanceContext);
+  const { search } = useLocation();
+  const category = decodeURIComponent(search.split("=")[1]);
+  console.log(category);
 
   const handleMenuClick = () => {
     setSidebarOpen(true);
