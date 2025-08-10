@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 /* Custom CSS variables for consistent theming */
 :root {
   --font-family-primary: "Poppins", system-ui, -apple-system, sans-serif;

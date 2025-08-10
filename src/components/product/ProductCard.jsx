@@ -1,5 +1,3 @@
-import React from "react";
-import { MoreHorizontal } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 export function ProductCard({ product }) {
@@ -19,21 +17,6 @@ export function ProductCard({ product }) {
           className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
-
-        {/* Action Button */}
-        <div className="absolute top-3 right-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <button
-            className="rounded-lg border border-gray-200 bg-white p-2 shadow-sm transition-colors duration-200 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              // Handle menu action
-            }}
-            aria-label="Product options"
-          >
-            <MoreHorizontal className="h-4 w-4 text-gray-600" />
-          </button>
-        </div>
       </div>
 
       {/* Product Info */}

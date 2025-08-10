@@ -12,7 +12,6 @@ function Home() {
   const [products] = useContext(InstanceContext);
   const { search } = useLocation();
   const category = decodeURIComponent(search.split("=")[1]);
-  console.log(category);
 
   const handleMenuClick = () => {
     setSidebarOpen(true);
