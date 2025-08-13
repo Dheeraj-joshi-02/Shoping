@@ -1,65 +1,81 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "./button/Button";
+import InstanceContext from "../context/Context";
 
 export default function AddProductForm() {
-  const [product, setProduct] = useState({
+  const [item, setItems] = useContext(InstanceContext);
+  console.log(item);
+
+  const productsValue = {
     imageUrl: "",
     name: "",
-    price: "",
-    quantity: 1,
+    cetegory: "",
+    quantity: "",
     description: "",
-  });
+  };
+
+  const [product, setProduct] = useState(productsValue);
 
   const handleChange = (e) => {
-    console.log(e);
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const AddProductHandler = (event) => {
+    if (
+      !productsValue.imageUrl.trim().length < 5 ||
+      !productsValue.name.trim() ||
+      !productsValue.cetegory.trim() ||
+      !productsValue.quantity.trim() ||
+      !productsValue.description.trim()
+    ) {
+      alert("All filed must be filed!");
+    }
+
+    event.preventDefault();
     console.log("Product added:", product);
-    setProduct([]);
+    setProduct(product);
+    setItems(product);
   };
 
   return (
     <div className="flex h-screen items-center">
-      <div className="mx-auto grid max-w-md place-items-center rounded-md border border-gray-200 p-4 shadow-sm">
-        <h1 className="mb-4 text-2xl font-semibold">Add New Product</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="shadow-sm' mx-auto max-w-lg rounded-md border border-gray-200 p-6 shadow-gray-300">
+        <h1 className="mb-6 pl-2 text-2xl font-semibold">Add New Product</h1>
+        <form onSubmit={AddProductHandler} className="space-y-4">
           <input
-            type="text"
+            type="url"
             name="imageUrl"
             placeholder="Product Image URL"
             value={product.imageUrl}
             onChange={handleChange}
-            className="w-full rounded-md border border-gray-200 p-2"
+            className="w-full rounded-md bg-gray-100 p-3"
           />
           <input
             type="text"
             name="name"
-            placeholder="Product Name"
+            placeholder="Product Name / Title"
             value={product.name}
             onChange={handleChange}
-            className="w-full rounded-md border border-gray-200 p-2"
+            className="w-full rounded-md bg-gray-100 p-3"
           />
           <div className="flex gap-2">
             <input
               type="text"
-              name="price"
-              placeholder="Price"
-              value={product.price}
+              name="cetegory"
+              placeholder="cetegory"
+              value={product.cetegory}
               onChange={handleChange}
-              className="flex-1 rounded-md border border-gray-200 p-2"
+              className="w-full flex-1 rounded-md bg-gray-100 p-3"
             />
             <input
-              type="number"
+              type="text"
               name="quantity"
-              placeholder="Quantity"
+              placeholder="Price"
               value={product.quantity}
               onChange={handleChange}
-              className="w-20 rounded-md border border-gray-200 p-2"
+              className="w-24 rounded-md bg-gray-100 p-3"
             />
           </div>
           <textarea
@@ -67,7 +83,7 @@ export default function AddProductForm() {
             placeholder="Description"
             value={product.description}
             onChange={handleChange}
-            className="w-full rounded-md border border-gray-200 p-2"
+            className="w-full rounded-md bg-gray-100 p-3"
           />
           <div className="flex gap-2">
             <Button

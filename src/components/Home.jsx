@@ -48,7 +48,7 @@ function Home() {
           <Header onMenuClick={handleMenuClick} />
 
           <main className="flex-1 overflow-y-auto">
-            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mx-auto h-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
               {/* Page Header */}
               <div className="mb-8">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -71,40 +71,42 @@ function Home() {
               </div>
 
               {/* Product Grid */}
-              {products.length === 0 ? (
-                <div className="flex items-center justify-center py-12">
-                  <Loading message="Loading products..." />
-                </div>
-              ) : filteredProducts.length === 0 ? (
-                <div className="py-12 text-center">
-                  <div className="mx-auto max-w-md">
-                    <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gray-100">
-                      <span className="text-2xl text-gray-400">📦</span>
-                    </div>
-                    <p className="mb-4 text-gray-600">
-                      No products match the selected category. Try selecting a
-                      different category.
-                    </p>
-                    <div className="flex justify-center gap-2">
-                      <button
-                        onClick={() => handleCategoryChange("all")}
-                        className="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
-                      >
-                        Show All Products
-                      </button>
-                      <button className="rounded-lg bg-black px-4 py-2 text-white transition-colors hover:bg-gray-800">
-                        Add New Product
-                      </button>
+              <div className="flex h-10/12 items-center justify-center">
+                {products.length === 0 ? (
+                  <div className="flex items-center justify-center py-12">
+                    <Loading message="Loading products..." />
+                  </div>
+                ) : filteredProducts.length === 0 ? (
+                  <div className="py-12 text-center">
+                    <div className="mx-auto max-w-md">
+                      <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gray-100">
+                        <span className="text-2xl text-gray-400">📦</span>
+                      </div>
+                      <p className="mb-4 text-gray-600">
+                        No products match the selected category. Try selecting a
+                        different category.
+                      </p>
+                      <div className="flex justify-center gap-2">
+                        <Button
+                          onClick={() => handleCategoryChange("all")}
+                          className="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                        >
+                          Show All Products
+                        </Button>
+                        <Button className="rounded-lg bg-black px-4 py-2 text-white transition-colors hover:bg-gray-800">
+                          Add New Product
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-                  {filteredProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              )}
+                ) : (
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+                    {filteredProducts.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </main>
         </div>

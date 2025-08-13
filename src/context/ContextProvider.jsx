@@ -8,7 +8,6 @@ const ContextProvider = ({ children }) => {
     try {
       const response = await getInstance();
       setProducts(response.data);
-      // console.log(response.data);
     } catch (error) {
       console.log(`error: ${error}`);
     }
