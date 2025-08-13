@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { X, Filter, Plus } from "lucide-react";
 import InstanceContext from "../../context/Context";
 import { NavLink } from "react-router-dom";
+import Button from "../button/Button";
 
 export const Sidebar = ({
   isOpen,
@@ -60,10 +61,14 @@ export const Sidebar = ({
 
         {/* Add New Product Button */}
         <div className="border-b border-gray-200 p-4">
-          <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
-            <Plus className="h-4 w-4" />
-            Add New Product
-          </button>
+          <NavLink to={"./create"}>
+            <Button
+              text={"Add New Products"}
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
+          </NavLink>
         </div>
 
         {/* Category Filter */}
