@@ -1,15 +1,25 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Home from "../components/Home";
-import ProductDetails from "../components/ProductDetails";
+import ProductDetails from "../components/product/ProductDetails";
 
-const Router = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/productdetails/:id" element={<ProductDetails />} />
-    </Routes>
-  );
-};
+const Router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/productdetails/:id",
+    element: <ProductDetails />,
+  },
+  {
+    path: "/category/:category",
+    element: <Home />,
+  },
+  {
+    path: "/productdetails/:id",
+    element: <ProductDetails />,
+  },
+]);
 
 export default Router;
