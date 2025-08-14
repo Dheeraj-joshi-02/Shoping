@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Button from "./button/Button";
-import InstanceContext from "../context/Context";
+import Button from "../button/Button";
+import InstanceContext from "../../context/Context";
 
 export default function AddProductForm() {
   const [item, setItems] = useContext(InstanceContext);
@@ -17,26 +17,24 @@ export default function AddProductForm() {
 
   const [product, setProduct] = useState(productsValue);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+  const inputChange = (event) => {
+    const { name, value } = event.target;
+    setProduct((prev) => ({ ...prev, [name]: value }));
   };
 
-  const AddProductHandler = (event) => {
+  const AddProductHandler = () => {
     if (
-      !productsValue.imageUrl.trim().length < 5 ||
-      !productsValue.name.trim() ||
-      !productsValue.cetegory.trim() ||
-      !productsValue.quantity.trim() ||
-      !productsValue.description.trim()
+      !product.imageUrl.trim() ||
+      !product.name.trim() ||
+      !product.cetegory.trim() ||
+      !product.quantity.trim() ||
+      !product.description.trim()
     ) {
-      alert("All filed must be filed!");
+      alert("All fields must be filled correctly!");
+      return;
     }
-
-    event.preventDefault();
+    setItems((prev) => [...prev, product]);
     console.log("Product added:", product);
-    setProduct(product);
-    setItems(product);
   };
 
   return (
@@ -49,7 +47,7 @@ export default function AddProductForm() {
             name="imageUrl"
             placeholder="Product Image URL"
             value={product.imageUrl}
-            onChange={handleChange}
+            onChange={inputChange}
             className="w-full rounded-md bg-gray-100 p-3"
           />
           <input
@@ -57,7 +55,7 @@ export default function AddProductForm() {
             name="name"
             placeholder="Product Name / Title"
             value={product.name}
-            onChange={handleChange}
+            onChange={inputChange}
             className="w-full rounded-md bg-gray-100 p-3"
           />
           <div className="flex gap-2">
@@ -66,7 +64,7 @@ export default function AddProductForm() {
               name="cetegory"
               placeholder="cetegory"
               value={product.cetegory}
-              onChange={handleChange}
+              onChange={inputChange}
               className="w-full flex-1 rounded-md bg-gray-100 p-3"
             />
             <input
@@ -74,7 +72,7 @@ export default function AddProductForm() {
               name="quantity"
               placeholder="Price"
               value={product.quantity}
-              onChange={handleChange}
+              onChange={inputChange}
               className="w-24 rounded-md bg-gray-100 p-3"
             />
           </div>
@@ -82,7 +80,7 @@ export default function AddProductForm() {
             name="description"
             placeholder="Description"
             value={product.description}
-            onChange={handleChange}
+            onChange={inputChange}
             className="w-full rounded-md bg-gray-100 p-3"
           />
           <div className="flex gap-2">

@@ -4,15 +4,15 @@ import { Sidebar } from "./layout/Sidebar";
 import { ProductCard } from "./product/ProductCard";
 import InstanceContext from "../context/Context";
 import Loading from "./common/Loading";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [products] = useContext(InstanceContext);
-  const { search } = useLocation();
-  const category = decodeURIComponent(search.split("=")[1]);
-  console.log(category);
+  // const { search } = useLocation();
+  // const category = decodeURIComponent(search.split("=")[1]);
+  // console.log(category);
 
   const handleMenuClick = () => {
     setSidebarOpen(true);
@@ -71,7 +71,7 @@ function Home() {
               </div>
 
               {/* Product Grid */}
-              <div className="flex h-10/12 items-center justify-center">
+              <div className="h-10/12">
                 {products.length === 0 ? (
                   <div className="flex items-center justify-center py-12">
                     <Loading message="Loading products..." />

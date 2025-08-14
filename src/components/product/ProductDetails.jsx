@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { getInstance } from "../../service/axios";
+import { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Edit, Trash2, Star } from "lucide-react";
-
 import Loading from "../common/Loading";
+import InstanceContext from "../../context/Context";
 
 const ProductDetails = () => {
+  const [item] = useContext(InstanceContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
@@ -13,20 +13,23 @@ const ProductDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getSingleProduct = async () => {
-      try {
-        setLoading(true);
-        const response = await getInstance(`products/${id}`);
-        setProduct(response.data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        setError("Failed to load product details");
-      } finally {
-        setLoading(false);
+    setLoading(true);
+    try {
+      const found = item.find((prod) => String(prod.id) === String(id));
+      if (found) {
+        setProduct(found);
+        setError(null);
+      } else {
+        setProduct(null);
+        setError("Product not found");
       }
-    };
-    getSingleProduct();
-  }, [id]);
+    } catch {
+      setProduct(null);
+      setError("Error loading product");
+    } finally {
+      setLoading(false);
+    }
+  }, [id, item]);
 
   if (loading) {
     return (
