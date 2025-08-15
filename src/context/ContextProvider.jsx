@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InstanceContext from "./Context";
-import { getInstance } from "../service/axios";
+import Data from "../storage/localStorage";
+
 const ContextProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
-
-  const getProducts = async () => {
-    try {
-      const response = await getInstance();
-      setProducts(response.data);
-    } catch (error) {
-      console.log(`error: ${error}`);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const [products, setProducts] = useState(
+    JSON.parse(localStorage.getItem("products")) || Data,
+  );
 
   return (
     <InstanceContext.Provider value={[products, setProducts]}>

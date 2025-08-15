@@ -1,11 +1,5 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import ContextProvider from "./context/ContextProvider";
-import Router from "./utils/Router";
-import { RouterProvider } from "react-router-dom";
+import App from "./App";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <ContextProvider>
-    <RouterProvider router={Router} />
-  </ContextProvider>,
-);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
