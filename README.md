@@ -71,10 +71,11 @@
 Shoping/
 │── src/
 │   ├── components/      *// Reusable UI components*
-│   ├── pages/           *// Page-level components for routing*
 │   ├── context/         *// Context API state management*
+│   ├── storage/         *// localStorage data are stored*
+│   ├── utils/           *// Routers file*
 │   ├── App.js           *// Main application file*
-│   ├── index.js         *// Entry point*
+│   ├── Main.js          *// Entry point*
 │
 │── public/              *// Static assets*
 │── package.json         *// Project dependencies & scripts*
