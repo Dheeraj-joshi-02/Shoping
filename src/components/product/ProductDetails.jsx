@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Edit, Trash2, Star } from "lucide-react";
 import Loading from "../common/Loading";
 import InstanceContext from "../../context/Context";
+import Button from "../button/Button";
 
 const ProductDetails = () => {
   const [item] = useContext(InstanceContext);
@@ -49,12 +50,12 @@ const ProductDetails = () => {
           <p className="mb-4 text-gray-600">
             {error || "The product you're looking for doesn't exist."}
           </p>
-          <button
+          <Button
             onClick={() => navigate("/")}
             className="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
           >
             Back to Products
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -66,13 +67,13 @@ const ProductDetails = () => {
       <div className="border-b border-gray-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 py-4">
-            <button
+            <Button
               onClick={() => navigate("/")}
               className="rounded-lg p-2 text-gray-600 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
               aria-label="Go back to products"
             >
               <ArrowLeft className="h-5 w-5" />
-            </button>
+            </Button>
             <h1 className="text-lg font-semibold text-gray-900">
               Product Details
             </h1>
@@ -149,14 +150,14 @@ const ProductDetails = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col gap-3 pt-4 sm:flex-row">
-                <button className="flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
+                <Button className="flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
                   <Edit className="h-4 w-4" />
                   Edit Product
-                </button>
-                <button className="flex items-center justify-center gap-2 rounded-lg border border-red-300 bg-white px-6 py-3 font-medium text-red-600 transition-colors duration-200 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none">
+                </Button>
+                <Button className="flex items-center justify-center gap-2 rounded-lg border border-red-300 bg-white px-6 py-3 font-medium text-red-600 transition-colors duration-200 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none">
                   <Trash2 className="h-4 w-4" />
                   Delete Product
-                </button>
+                </Button>
               </div>
             </div>
           </div>

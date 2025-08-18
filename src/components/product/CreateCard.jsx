@@ -5,7 +5,6 @@ import InstanceContext from "../../context/Context";
 
 export default function AddProductForm() {
   const [item, setItems] = useContext(InstanceContext);
-  console.log(item);
 
   const productsValue = {
     image: "",
@@ -35,7 +34,6 @@ export default function AddProductForm() {
       return;
     }
     setItems((prev) => [...prev, product]);
-    console.log("Product added:", product);
     localStorage.setItem("products", JSON.stringify([...item, product]));
     setProduct(productsValue);
   };

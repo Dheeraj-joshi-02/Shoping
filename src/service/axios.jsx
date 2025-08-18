@@ -1,9 +1,9 @@
-import axios from "axios";
+// import axios from "axios";
 
-const instance = axios.create({
-  baseURL: "https://fakestoreapi.com/",
-});
+// const instance = axios.create({
+//   baseURL: "https://fakestoreapi.com/",
+// });
 
-export const getInstance = (endpoint = "products/") => {
-  return instance.get(endpoint);
-};
+// export const getInstance = (endpoint = "products/") => {
+//   return instance.get(endpoint);
+// };

@@ -64,7 +64,7 @@ export const Sidebar = ({
           <NavLink to={"./create"}>
             <Button
               text={"Add New Products"}
-              className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+              className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
             >
               <Plus className="h-4 w-4" />
             </Button>
@@ -72,7 +72,7 @@ export const Sidebar = ({
         </div>
 
         {/* Category Filter */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-6 max-h-3/4 overflow-y-scroll">
           <div className="mb-6 flex items-center gap-2">
             <Filter className="h-4 w-4 text-gray-500" />
             <h2 className="text-sm font-medium text-gray-900">
@@ -95,7 +95,7 @@ export const Sidebar = ({
               aria-pressed={selectedCategory === "all"}
             >
               <div className="h-2 w-2 rounded-full bg-gray-400" />
-              <span>All Categories</span>
+              <span className="cursor-pointer">All Categories</span>
             </button>
             {distinctProducts.map((category, id) => (
               <NavLink
