@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # *🛍️ Shopping Web Application*
 
 ---
@@ -106,5 +105,3 @@ Shoping/
 *GitHub: [Dheeraj-joshi-02](https://github.com/Dheeraj-joshi-02)*
 
 ---
-=======
->>>>>>> 406c52b (Adjust product categories and implement button components in ProductDetails.)
