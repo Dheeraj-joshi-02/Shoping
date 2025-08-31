@@ -17,10 +17,6 @@ const Router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/productdetails/:id",
-    element: <ProductDetails />,
-  },
-  {
     path: "/create",
     element: <CreateCard />,
   },

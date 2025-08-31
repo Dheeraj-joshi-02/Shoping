@@ -12,14 +12,15 @@ export const Sidebar = ({
 }) => {
   const [products] = useContext(InstanceContext);
 
-  // storing array categories in another array.
-  let distinctProducts =
-    products && products.reduce((acc, cv) => [...acc, cv.category], []);
-  distinctProducts = [...new Set(distinctProducts)];
+  const distinctProducts = [...new Set(products?.map((p) => p.category))];
 
-  const color = () => {
-    return `rgba(${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()},${(Math.random() * 255).toFixed()})`;
+  const categoryColors = {
+    "men's clothing": "bg-blue-500",
+    "women's clothing": "bg-pink-500",
+    jewelery: "bg-yellow-500",
+    electronics: "bg-gray-500",
   };
+
   return (
     <>
       {/* Mobile overlay */}
@@ -46,17 +47,15 @@ export const Sidebar = ({
         aria-label="Product management sidebar"
       >
         {/* Header */}
-        <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6">
-          <h1 className="text-lg font-semibold text-gray-900">
-            Product Manager
-          </h1>
-          <button
+        <div className="none flex h-16 items-center justify-between border-b border-gray-200 px-6">
+          <h1 className="text-lg font-semibold text-gray-900">User Dasboard</h1>
+          <Button
             onClick={onClose}
             className="rounded-lg p-2 text-gray-500 transition-colors duration-200 hover:bg-gray-100 hover:text-gray-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none lg:hidden"
             aria-label="Close sidebar"
           >
             <X className="h-5 w-5" />
-          </button>
+          </Button>
         </div>
 
         {/* Add New Product Button */}
@@ -72,7 +71,7 @@ export const Sidebar = ({
         </div>
 
         {/* Category Filter */}
-        <div className="flex-1 p-6 max-h-3/4 overflow-y-scroll">
+        <div className="max-h-3/4 flex-1 overflow-y-scroll p-6">
           <div className="mb-6 flex items-center gap-2">
             <Filter className="h-4 w-4 text-gray-500" />
             <h2 className="text-sm font-medium text-gray-900">
@@ -97,9 +96,9 @@ export const Sidebar = ({
               <div className="h-2 w-2 rounded-full bg-gray-400" />
               <span className="cursor-pointer">All Categories</span>
             </button>
-            {distinctProducts.map((category, id) => (
+            {distinctProducts.map((category) => (
               <NavLink
-                key={id}
+                key={category}
                 to={`/category/${category}`}
                 onClick={() => onCategoryChange(category)}
                 className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none ${
@@ -110,8 +109,9 @@ export const Sidebar = ({
                 aria-pressed={selectedCategory === category}
               >
                 <div
-                  style={{ backgroundColor: color() }}
-                  className={`h-2 w-2 rounded-full ${category}`}
+                  className={`h-2 w-2 rounded-full ${
+                    categoryColors[category.toLowerCase()] || "bg-gray-400"
+                  }`}
                 />
                 <span>{category}</span>
               </NavLink>
@@ -137,5 +137,3 @@ export const Sidebar = ({
     </>
   );
 };
-
-("Have any error in this code?");

@@ -33,8 +33,12 @@ export default function AddProductForm() {
       alert("All fields must be filled correctly!");
       return;
     }
-    setItems((prev) => [...prev, product]);
-    localStorage.setItem("products", JSON.stringify([...item, product]));
+
+    const newProduct = { ...product, id: new Date().getTime() };
+    const updatedItems = [...item, newProduct];
+
+    setItems(updatedItems);
+    localStorage.setItem("products", JSON.stringify(updatedItems));
     setProduct(productsValue);
   };
 

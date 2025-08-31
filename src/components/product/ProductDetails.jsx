@@ -1,46 +1,28 @@
 import { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Edit, Trash2, Star } from "lucide-react";
-import Loading from "../common/Loading";
 import InstanceContext from "../../context/Context";
 import Button from "../button/Button";
 
 const ProductDetails = () => {
-  const [item] = useContext(InstanceContext);
+  const [item, setItem] = useContext(InstanceContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setLoading(true);
-    try {
-      const found = item.find((prod) => String(prod.id) === String(id));
-      if (found) {
-        setProduct(found);
-        setError(null);
-      } else {
-        setProduct(null);
-        setError("Product not found");
-      }
-    } catch {
-      setProduct(null);
-      setError("Error loading product");
-    } finally {
-      setLoading(false);
-    }
+    const found = item.find((prod) => String(prod.id) === String(id));
+    setProduct(found || null);
   }, [id, item]);
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50">
-        <Loading />
-      </div>
-    );
-  }
+  const handleDelete = (id) => {
+    const updatedItems = item.filter((p) => p.id !== id);
+    setItem(updatedItems);
+    localStorage.setItem("products", JSON.stringify(updatedItems));
+    navigate("/");
+  };
 
-  if (error || !product) {
+  if (!product) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -48,7 +30,7 @@ const ProductDetails = () => {
             Product Not Found
           </h2>
           <p className="mb-4 text-gray-600">
-            {error || "The product you're looking for doesn't exist."}
+            "The product you're looking for doesn't exist."
           </p>
           <Button
             onClick={() => navigate("/")}
@@ -63,7 +45,6 @@ const ProductDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 py-4">
@@ -154,7 +135,10 @@ const ProductDetails = () => {
                   <Edit className="h-4 w-4" />
                   Edit Product
                 </Button>
-                <Button className="flex items-center justify-center gap-2 rounded-lg border border-red-300 bg-white px-6 py-3 font-medium text-red-600 transition-colors duration-200 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none">
+                <Button
+                  onClick={() => handleDelete(product.id)}
+                  className="flex items-center justify-center gap-2 rounded-lg border border-red-300 bg-white px-6 py-3 font-medium text-red-600 transition-colors duration-200 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none"
+                >
                   <Trash2 className="h-4 w-4" />
                   Delete Product
                 </Button>
